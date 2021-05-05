@@ -9,6 +9,7 @@ import { AuthService } from "./auth.service";
 export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
+  error!: string;
 
   constructor(private authService: AuthService) { }
 
@@ -27,10 +28,10 @@ export class AuthComponent {
     } else {
       this.authService.signup(email, password).subscribe(resData => {
         console.log(resData);
-        this.isLoading=false;
+        this.isLoading = false;
       }, error => {
-        console.log(error);
-        this.isLoading=false;
+        this.error = "An Error Occured!"
+        this.isLoading = false;
       });
     }
     form.reset();
